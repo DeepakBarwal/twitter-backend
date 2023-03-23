@@ -2,7 +2,6 @@ const express = require('express');
 
 const connect = require('./config/database');
 const TweetRepository = require('./repositories/tweet-repository');
-const Comment = require('./models/comment');
 
 const app = express();
 
@@ -13,6 +12,6 @@ app.listen(PORT, async () => {
     await connect();
     
     const repo = new TweetRepository();
-    const tweet = await repo.getWithComments('641bc9819f52c063d7de2667');
-    console.log(tweet);
+    const tweets = await repo.getAll(0,2);
+    console.log(tweets[0].contentWithEmail);
 });

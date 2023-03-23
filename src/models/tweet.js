@@ -20,6 +20,10 @@ const tweetSchema = new mongoose.Schema({
     }
 );
 
+tweetSchema.virtual('contentWithEmail').get(function process() {
+    return this.content + '\n' + 'Created By: ' + this.userEmail;
+});
+
 const Tweet = mongoose.model('Tweet', tweetSchema);
 
 module.exports = Tweet;

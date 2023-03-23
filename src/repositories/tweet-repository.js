@@ -22,7 +22,7 @@ class TweetRepository {
 
     async getWithComments(id) {
         try {
-            const tweet = await Tweet.findById(id).populate({path: 'comments'});
+            const tweet = await Tweet.findById(id).populate({path: 'comments'}).lean();
             return tweet;
         } catch (error) {
             console.error(error);
@@ -42,6 +42,15 @@ class TweetRepository {
         try {
             await Tweet.findByIdAndRemove(id);
             return true;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async getAll(offset, limit) {
+        try {
+            const tweets = await Tweet.find().skip(offset).limit(limit);
+            return tweets;
         } catch (error) {
             console.error(error);
         }
