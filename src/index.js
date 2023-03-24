@@ -14,4 +14,6 @@ app.listen(PORT, async () => {
     const repo = new TweetRepository();
     const tweets = await repo.getAll(0,2);
     console.log(tweets[0].contentWithEmail);
+    const tweet = await repo.create({content: 'yo'});
+    console.log(tweet);
 });
