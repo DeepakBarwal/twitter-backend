@@ -13,7 +13,7 @@ app.listen(PORT, async () => {
     console.log('MongoDB connected');
 
     const tweet = await new TweetService().create({
-        content: 'is #tweets working?'
+        content: 'is #cAps working?'
     });
     console.log(tweet);
 });
