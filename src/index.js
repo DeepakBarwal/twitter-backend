@@ -1,16 +1,21 @@
 import express from 'express';
+import passport from 'passport';
 
 import {connect} from './config/database.js';
-import apiRoutes from './routes/index.js';
 
-import {TweetRepository, UserRepository} from './repositories/index.js';
-import LikeService from './services/like-service.js';
+import {passportAuth} from './config/jwt-middleware.js';
+
+import apiRoutes from './routes/index.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(passport.initialize());
+passportAuth(passport);
+
 app.use('/api', apiRoutes);
 
 app.listen(PORT, async () => {
