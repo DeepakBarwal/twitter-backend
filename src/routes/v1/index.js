@@ -5,7 +5,7 @@ import {toggleLike} from '../../controllers/like-controller.js';
 import {createComment} from '../../controllers/comment-controller.js';
 import {signUp, login} from '../../controllers/auth-controller.js';
 
-import {authenticate} from '../../middlewares/authenticate.js'
+import {authenticate} from '../../middlewares/authenticate.js';
 
 const router = express.Router();
 
